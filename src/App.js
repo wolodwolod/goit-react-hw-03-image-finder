@@ -21,7 +21,12 @@ const Status = {
   RESOLVED: 'resolved',
   REJECTED: 'rejected',
 };
-const PER_PAGE = 12;
+const params = {
+  API_KEY: '25433386-4f25aa275c005ef248c74251b',
+  image_type: 'photo',
+  orientation: 'horizontal',
+  PER_PAGE: 12,
+}
 
 class App extends Component {
 
@@ -59,16 +64,17 @@ class App extends Component {
     // {
       {
     const { query, page } = this.state;
+
            
-    fetchData(query, page, PER_PAGE)
+    fetchData(query, page, params)
       .then(({ hits, totalHits }) => {
 
         console.log(hits, totalHits)
 
-        const totalPages = Math.ceil(totalHits / PER_PAGE);
+        const totalPages = Math.ceil(totalHits / params.PER_PAGE);
 
-        if (hits.length === 0) {
-          this.setState({ status: Status.IDLE });
+        if (!hits.length) {
+          // this.setState({ status: Status.IDLE });
           return toast.error('Sorry, no images found. Please, try again!');
                   }
 
@@ -118,15 +124,14 @@ class App extends Component {
   toggleModal = largeImageURL => {
     this.setState(({ showModal }) => ({
       showModal: !showModal,
+      largeImageURL: largeImageURL
     }));
-    this.setState({ largeImageURL: largeImageURL });
-  };
+      };
 
   onLoadMore = () => {
     this.setState(({ page }) => ({
       page: page + 1,
-      // status: Status.PENDING_MORE
-          }));
+               }));
   };
 
   // Разметка

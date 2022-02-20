@@ -7,7 +7,6 @@ const secondRoot = document.querySelector('#second-root');
 
 class Modal extends Component {
   static propTypes = {
-    onClick: PropTypes.func,
     onClose: PropTypes.func,
     children: PropTypes.node.isRequired,
   };
@@ -39,15 +38,7 @@ class Modal extends Component {
   <div className={s.Modal}>{this.props.children}</div>,
           </div>,
           secondRoot
-          
-          
-    //   <Overlay onClick={this.handleBackdropClick}>
-    //     <ModalStyled>{this.props.children}</ModalStyled>
-    //     {/* <button type="button" onClick={this.props.onClose}>
-    //       <GrClose style={{ width: 30, height: 30 }} />
-    //     </button> */}
-    //   </Overlay>,
-      
+                       
     );
   }
 }
