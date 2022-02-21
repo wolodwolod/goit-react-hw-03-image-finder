@@ -21,12 +21,7 @@ const Status = {
   RESOLVED: 'resolved',
   REJECTED: 'rejected',
 };
-const params = {
-  API_KEY: '25433386-4f25aa275c005ef248c74251b',
-  image_type: 'photo',
-  orientation: 'horizontal',
-  PER_PAGE: 12,
-}
+const PER_PAGE = 12;
 
 class App extends Component {
 
@@ -60,18 +55,17 @@ class App extends Component {
   // Функция - запрос
   
   fetchImages = () =>
-    // setTimeout(() =>
-    // {
+    
       {
     const { query, page } = this.state;
 
            
-    fetchData(query, page, params)
+    fetchData(query, page, PER_PAGE)
       .then(({ hits, totalHits }) => {
 
         console.log(hits, totalHits)
 
-        const totalPages = Math.ceil(totalHits / params.PER_PAGE);
+        const totalPages = Math.ceil(totalHits / PER_PAGE);
 
         if (!hits.length) {
           this.setState({ status: Status.IDLE });
@@ -106,7 +100,7 @@ class App extends Component {
         status: Status.REJECTED
       }))
         }
-//  }, 1000);
+
   
   // Методы
   
