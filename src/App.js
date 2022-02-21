@@ -74,7 +74,7 @@ class App extends Component {
         const totalPages = Math.ceil(totalHits / params.PER_PAGE);
 
         if (!hits.length) {
-          // this.setState({ status: Status.IDLE });
+          this.setState({ status: Status.IDLE });
           return toast.error('Sorry, no images found. Please, try again!');
                   }
 
